@@ -13,6 +13,7 @@ namespace Acceso_Datos
             services.AddDbContext<MyDBContext>(options => options.UseSqlServer(configuration.GetConnectionString("Cadena_Conexion")));
 
             // Accesos A Las Tablas
+            services.AddScoped<UsuarioDAL>();
 
             return services;
         }
