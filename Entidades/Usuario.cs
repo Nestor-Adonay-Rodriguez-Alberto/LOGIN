@@ -18,7 +18,7 @@ namespace Entidades
 
 
         [Required(ErrorMessage ="Ingrese Un Nombre De Usuario. Ejemplo -> Pepe04")]
-        public int NombreUsuario { get; set; }
+        public string NombreUsuario { get; set; }
 
 
         [Required(ErrorMessage ="Ingrese Su Fecha De Nacimiento.")]

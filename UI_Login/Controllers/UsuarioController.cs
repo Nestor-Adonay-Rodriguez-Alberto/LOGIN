@@ -17,7 +17,7 @@ namespace UI_Login.Controllers
         }
 
         // Manda Todos Los Registros De La Tabla:
-        public async Task<ActionResult> Usuarios()
+        public async Task<ActionResult> Usuarios_Registrados()
         {
             List<Usuario> Objetos_Obtenidos = await _UsuarioBL.Obtener_Todos();
 
@@ -33,10 +33,9 @@ namespace UI_Login.Controllers
             return View(Objeto_Obtenido);
         }
 
-        
+
         public ActionResult Registrarce()
         {
-
             return View();
         }
 
@@ -44,11 +43,22 @@ namespace UI_Login.Controllers
         // Recibe Un Objeto Y Lo Guarda En La Tabla:
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Registrarce(Usuario usuario)
+        public async Task<ActionResult> Registrarce(Usuario usuario, IFormFile Fotografia)
         {
+            // Convirtiendo a Arreglo De Bytes:
+            if (Fotografia != null && Fotografia.Length > 0)
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    Fotografia.CopyTo(memoryStream);
+
+                    usuario.Fotografia = memoryStream.ToArray();
+                }
+            }
+
             await _UsuarioBL.Registrarce(usuario);
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Usuarios_Registrados", "Usuario");
         }
 
 
@@ -64,16 +74,36 @@ namespace UI_Login.Controllers
         // Recibe El Objeto Que Fue Enviado Anteriormente:
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(Usuario usuario)
+        public async Task<ActionResult> Edit(Usuario usuario, IFormFile Fotografia)
         {
+            Usuario Objeto_Obtenido = await _UsuarioBL.Obtener_PorId(new Usuario() { Id_Usuario = usuario.Id_Usuario });
+
+            // Convirtiendo a Arreglo De Bytes:
+            if (Fotografia != null && Fotografia.Length > 0)
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    Fotografia.CopyTo(memoryStream);
+
+                    usuario.Fotografia = memoryStream.ToArray();
+                }
+            }
+            else
+            {
+                usuario.Fotografia = Objeto_Obtenido.Fotografia;
+            }
+
+            // Contraseña Ya Existente:
+            usuario.Contraseña = Objeto_Obtenido.Contraseña;
+
             await _UsuarioBL.Edit(usuario);
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Usuarios_Registrados", "Usuario");
         }
 
 
         // Manda Un Objeto Encontrado De La Tabla:
-        public async Task<ActionResult> Delete(int id)
+        public async Task<ActionResult> Eliminar_Usuario(int id)
         {
             Usuario Objeto_Obtenido = await _UsuarioBL.Obtener_PorId(new Usuario() { Id_Usuario = id });
 
@@ -83,11 +113,11 @@ namespace UI_Login.Controllers
         // Recibe El Objeto Que Se Le Fue Enviado Anteriormente:
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Delete(Usuario usuario)
+        public async Task<ActionResult> Eliminar_Usuario(Usuario usuario)
         {
             await _UsuarioBL.Delete(usuario);
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Usuarios_Registrados", "Usuario");
         }
 
     }

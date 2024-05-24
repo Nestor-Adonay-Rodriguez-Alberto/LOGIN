@@ -16,3 +16,11 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.custom-body {
+    background-color: #6d6d6d; /* Color de fondo personalizado para el cuerpo */
+}
+
+header {
+    background-color: #fff; /* Color de fondo para el encabezado */
+}

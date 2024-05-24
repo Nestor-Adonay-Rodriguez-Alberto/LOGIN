@@ -1,0 +1,117 @@
+﻿@model IEnumerable<Entidades.Usuario>
+
+@{
+    ViewData["Title"] = "Usuarios";
+}
+
+<h1>Usuarios</h1>
+
+<p>
+    <a asp-action="Registrarce">Registrar Nuevo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("NOMBRE")
+            </th>
+            <th>
+                @Html.DisplayName("USUARIO")
+            </th>
+            <th>
+                @Html.DisplayName("NACIMIENTO")
+            </th>
+            <th>
+                @Html.DisplayName("EMAIL:")
+            </th>
+            <th>
+                @Html.DisplayName("CONTRASEÑA")
+            </th>
+            <th>
+                @Html.DisplayName("GENERO")
+            </th>
+            <th>
+                @Html.DisplayName("RESIDENCIA")
+            </th>
+            <th>
+                @Html.DisplayName("ROL:")
+            </th>
+            <th>
+                @Html.DisplayName("FOTOGRAFIA")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreCompleto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreUsuario)
+                </td>
+                <td>
+                    @item.FechaNacimiento.ToString("dd/MM/yyyy")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gmail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Contraseña)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Genero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Residencia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RolUsuario)
+                </td>
+                <td>
+                    @{
+                        // Es La Imagen En Base64
+                        string Imagen_Mostar = "";
+
+                        if (item.Fotografia != null && item.Fotografia.Length > 0)
+                        {
+                            string Cadena_Imagen = Convert.ToBase64String(item.Fotografia);
+                            Imagen_Mostar = "data:image/jpeg;base64," + Cadena_Imagen;
+                        }
+
+                        if (Imagen_Mostar.Trim().Length > 0)
+                        {
+                            <img id="VistaImagenUsuario" src="@Imagen_Mostar" style="max-width:100px; max-height:100px" />
+                        }
+                        else
+                        {
+                            <img id="VistaImagenUsuario" src="~/img/defecto.jpg" style="max-width:100px; max-height:100px" />
+                        }
+                    }
+                </td>
+                <td>
+                    <div class="d-flex flex-wrap">
+                        <div class="btn-group">
+                            <a asp-action="Edit" asp-route-id="@item.Id_Usuario" class="btn btn-primary rounded">Editar</a>
+                            <a asp-action="Detalle" asp-route-id="@item.Id_Usuario" class="btn btn-secondary rounded">Detalles</a>
+                            <a asp-action="Eliminar_Usuario" asp-route-id="@item.Id_Usuario" class="btn btn-danger rounded">Eliminar</a>
+                        </div>
+                        <style>
+                            .btn-group {
+                                display: flex;
+                                gap: 5px;
+                            }
+
+                            .btn {
+                                flex: 1;
+                                border-radius: 5px;
+                            }
+                        </style>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -79,8 +79,9 @@
         </dd>
     </dl>
     
-    <form asp-action="Delete">
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+    <form asp-action="Eliminar_Usuario">
+        <input type="hidden" asp-for="Id_Usuario" />
+        <input type="submit" value="ELIMINAR" class="btn btn-danger" /> |
+        <a asp-action="Usuarios_Registrados" class="btn btn-secondary">CANCELAR</a>
     </form>
 </div>
