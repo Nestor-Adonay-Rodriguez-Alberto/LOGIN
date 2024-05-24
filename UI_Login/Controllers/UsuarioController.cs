@@ -36,6 +36,7 @@ namespace UI_Login.Controllers
         
         public ActionResult Registrarce()
         {
+
             return View();
         }
 
