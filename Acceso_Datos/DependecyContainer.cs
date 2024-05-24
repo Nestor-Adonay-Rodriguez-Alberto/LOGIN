@@ -12,7 +12,7 @@ namespace Acceso_Datos
             // Inyeccion
             services.AddDbContext<MyDBContext>(options => options.UseSqlServer(configuration.GetConnectionString("Cadena_Conexion")));
 
-            // Accesos A Las Tablas
+            // Registrando Las Clases:
             services.AddScoped<UsuarioDAL>();
 
             return services;
