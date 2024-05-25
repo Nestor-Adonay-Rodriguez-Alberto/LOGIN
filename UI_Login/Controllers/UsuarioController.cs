@@ -1,5 +1,6 @@
 ﻿using Entidades;
 using Logica_Negocio;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Cryptography;
 using System.Text;
@@ -7,6 +8,7 @@ using System.Text;
 
 namespace UI_Login.Controllers
 {
+    [Authorize]
     public class UsuarioController : Controller
     {
         // Puente con DB y UI:
