@@ -1,6 +1,8 @@
 ﻿using Entidades;
 using Logica_Negocio;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Cryptography;
+using System.Text;
 
 
 namespace UI_Login.Controllers
@@ -55,6 +57,9 @@ namespace UI_Login.Controllers
                     usuario.Fotografia = memoryStream.ToArray();
                 }
             }
+
+            // Contraseña Encriptada:
+            usuario.Contraseña = EncriptarMD5(usuario.Contraseña);
 
             await _UsuarioBL.Registrarce(usuario);
 
@@ -118,6 +123,28 @@ namespace UI_Login.Controllers
             await _UsuarioBL.Delete(usuario);
 
             return RedirectToAction("Usuarios_Registrados", "Usuario");
+        }
+
+
+
+        // * * * * * * * * * OTROS METODOS * * * * * * * * * 
+
+        // Encripta Contraseñas
+        private string EncriptarMD5(string Password)
+        {
+            using (MD5 md5 = MD5.Create())
+            {
+                byte[] inputBytes = Encoding.UTF8.GetBytes(Password);
+                byte[] hashBytes = md5.ComputeHash(inputBytes);
+
+                StringBuilder Contraseña_Encriptada = new StringBuilder();
+                for (int i = 0; i < hashBytes.Length; i++)
+                {
+                    Contraseña_Encriptada.Append(hashBytes[i].ToString("x2"));
+                }
+
+                return Contraseña_Encriptada.ToString();
+            }
         }
 
     }

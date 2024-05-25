@@ -31,7 +31,7 @@ namespace Entidades
 
 
         [Required(ErrorMessage = "Ingrese Una Contraseña Segura.")]
-        [StringLength(100,MinimumLength =5,ErrorMessage ="La Contraseña Debe Tener Entre 5 y 10 Caracteres.")]
+        [StringLength(10,MinimumLength =5,ErrorMessage ="La Contraseña Debe Tener Entre 5 y 10 Caracteres.")]
         [DataType(DataType.Password)]
         public string Contraseña { get; set; }
 
