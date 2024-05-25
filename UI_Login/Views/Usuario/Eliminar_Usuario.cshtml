@@ -4,84 +4,146 @@
     ViewData["Title"] = "Delete";
 }
 
-<h1>Delete</h1>
+<style>
+    /* Estilos personalizados */
+    .form-container {
+        max-width: 600px;
+        padding: 20px;
+        background-color: #f7f7f7;
+        border-radius: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin: auto;
+        margin-top: 20px;
+    }
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Usuario</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Id_Usuario)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Id_Usuario)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NombreCompleto)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NombreCompleto)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NombreUsuario)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NombreUsuario)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FechaNacimiento)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FechaNacimiento)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Gmail)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Gmail)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Contraseña)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Contraseña)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ConfirmarContraseña)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ConfirmarContraseña)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Genero)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Genero)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Residencia)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Residencia)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RolUsuario)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.RolUsuario)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Fotografia)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Fotografia)
-        </dd>
-    </dl>
-    
-    <form asp-action="Eliminar_Usuario">
-        <input type="hidden" asp-for="Id_Usuario" />
-        <input type="submit" value="ELIMINAR" class="btn btn-danger" /> |
-        <a asp-action="Usuarios_Registrados" class="btn btn-secondary">CANCELAR</a>
-    </form>
+        .form-container h1 {
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            text-transform: uppercase;
+        }
+
+        .form-container .row {
+            margin-bottom: 10px;
+        }
+
+        .form-container label {
+            font-weight: bold;
+        }
+
+</style>
+
+
+<div class="form-container">
+    <h1>Usuario: @Model.NombreUsuario</h1><br />
+
+    <div>
+        <h5>Datos Personales</h5>
+        <hr />
+
+        <!-- FILA #1 -->
+        <div class="row">
+
+            <div class="col-sm-6">
+
+                <div class="Usuario-info-item">
+                    <dt>NOMBRE COMPLETO:</dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.NombreCompleto)
+                    </dd>
+                </div>
+
+                <div class="Usuario-info-item">
+                    <dt>GENERO:</dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Genero)
+                    </dd>
+                </div>
+
+            </div>
+
+            <div class="col-sm-6">
+                <div class="Usuario-info-item">
+                    <dt>NOMBRE DE USUARIO:</dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.NombreUsuario)
+                    </dd>
+                </div>
+
+                <div class="Usuario-info-item">
+                    <dt>ROL:</dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.RolUsuario)
+                    </dd>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- FILA #2 -->
+        <div class="row">
+
+            <div class="col-sm-6">
+
+                <div class="Usuario-info-item">
+                    <dt>NACIMIENTO:</dt>
+                    <dd class="col-sm-10">
+                        @Model.FechaNacimiento.ToString("dd/MM/yyyy")
+                    </dd>
+                </div>
+
+                <div class="Usuario-info-item">
+                    <dt>EMAIL:</dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Gmail)
+                    </dd>
+                </div>
+
+            </div>
+
+            <div class="col-sm-6">
+
+                <div class="Usuario-info-item">
+                    <dt>RESIDENCIA:</dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Residencia)
+                    </dd>
+                </div>
+
+                <div class="Usuario-info-item">
+                    <dt>FOTOGRAFIA:</dt>
+                    <dd class="col-sm-10">
+                        @{
+                            // Es La Imagen En Base64
+                            string Imagen_Mostar = "";
+
+                            if (Model.Fotografia != null && Model.Fotografia.Length > 0)
+                            {
+                                string Cadena_Imagen = Convert.ToBase64String(Model.Fotografia);
+                                Imagen_Mostar = "data:image/jpeg;base64," + Cadena_Imagen;
+                            }
+
+                            if (Imagen_Mostar.Trim().Length > 0)
+                            {
+                                <img id="VistaImagenUsuario" src="@Imagen_Mostar" style="max-width:100px; max-height:100px" />
+                            }
+                            else
+                            {
+                                <img id="VistaImagenUsuario" src="~/img/defecto.jpg" style="max-width:100px; max-height:100px" />
+                            }
+                        }
+                    </dd>
+                </div>
+
+            </div>
+        </div>
+
+        <form asp-action="Eliminar_Usuario">
+            <input type="hidden" asp-for="Id_Usuario" />
+            <input type="submit" value="ELIMINAR" class="btn btn-danger" /> |
+            <a asp-action="Usuarios_Registrados" class="btn btn-secondary">CANCELAR</a>
+        </form>
+    </div>
 </div>
