@@ -14,6 +14,7 @@ namespace Acceso_Datos
 
             // Registrando Las Clases:
             services.AddScoped<UsuarioDAL>();
+            services.AddScoped<SeguridadDAL>();
 
             return services;
         }
