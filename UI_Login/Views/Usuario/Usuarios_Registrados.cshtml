@@ -8,7 +8,7 @@
 
     /* Estilos Del Cuadro */
     .form-container {
-        max-width: 1300px;
+        max-width: 1000px;
         padding: 20px;
         background-color: #f7f7f7;
         border-radius: 20px;
@@ -54,18 +54,6 @@
                         @Html.DisplayName("USUARIO")
                     </th>
                     <th>
-                        @Html.DisplayName("NACIMIENTO")
-                    </th>
-                    <th>
-                        @Html.DisplayName("EMAIL")
-                    </th>
-                    <th>
-                        @Html.DisplayName("GENERO")
-                    </th>
-                    <th>
-                        @Html.DisplayName("RESIDENCIA")
-                    </th>
-                    <th>
                         @Html.DisplayName("ROL:")
                     </th>
                     <th>
@@ -83,18 +71,6 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.NombreUsuario)
-                        </td>
-                        <td>
-                            @item.FechaNacimiento.ToString("dd/MM/yyyy")
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Gmail)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Genero)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Residencia)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.RolUsuario)

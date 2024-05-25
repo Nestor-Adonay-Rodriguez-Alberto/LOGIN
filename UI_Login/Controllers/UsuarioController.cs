@@ -70,7 +70,7 @@ namespace UI_Login.Controllers
 
             await _UsuarioBL.Registrarce(usuario);
 
-            return RedirectToAction("Usuarios_Registrados", "Usuario");
+            return RedirectToAction("Index", "Home");
         }
 
 

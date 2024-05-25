@@ -27,6 +27,7 @@ namespace Entidades
 
         [Required(ErrorMessage = "Email Es Oblicatorio.")]
         [DataType(DataType.EmailAddress)]
+        [EmailAddress(ErrorMessage = "Lo Ingresado No Es Un Email.")]
         public string Gmail { get; set; }
 
 
@@ -52,6 +53,7 @@ namespace Entidades
         public string Residencia { get; set; }
 
 
+        [Required(ErrorMessage = "Selecciones Un Rol.")]
         public string RolUsuario { get; set; }
 
 
