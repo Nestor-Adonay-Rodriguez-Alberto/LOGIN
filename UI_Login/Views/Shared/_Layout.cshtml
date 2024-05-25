@@ -24,9 +24,6 @@
                         <!-- Seguridad Al Menu -->
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                            </li>
                             <!-- MENU PARA AUTORIZADOS -->
                             @if (User.IsInRole("Administrador."))
                             {
@@ -36,8 +33,16 @@
 
                             }
 
+
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Seguridad" asp-action="Login">Serrar Sesion</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Perfil">MI PERFIL.</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Seguridad" asp-action="Login">SERRAR SESION.</a>
+                            </li>
+                            <li>
+                                <span>@User.Identity.Name</span>
                             </li>
 
                         }
