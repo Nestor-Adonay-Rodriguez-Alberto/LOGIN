@@ -82,14 +82,15 @@
         <!-- BOTONES -->
         <div class="row">
             <div class="form-group col-md-12">
-                <input type="submit" value="LOGIN" class="btn btn-primary" />
-                <div class="error-message">
-                    @ViewBag.Error
+                <div class="d-flex flex-column">
+                    <input type="submit" value="LOGIN" class="btn btn-primary mb-2" />
+                    <div class="error-message">
+                        @ViewBag.Error
+                    </div>
+                    <a href="/Usuario/Registrarce" class="btn btn-secondary">REGISTRATE</a>
                 </div>
             </div>
         </div>
-
-
     </form>
 </div>
 
