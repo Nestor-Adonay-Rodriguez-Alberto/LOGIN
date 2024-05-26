@@ -192,6 +192,33 @@ namespace UI_Login.Controllers
         }
 
 
+        // Manda Un Objeto Encontrado De La Tabla
+        public async Task<ActionResult> Cambiar_Contraseña()
+        {
+            int Id_Usuario = Convert.ToInt32(User.FindFirstValue("IdUsuario"));
+
+            Usuario Objeto_Obtenido = await _UsuarioBL.Obtener_PorId(new Usuario() { Id_Usuario = Id_Usuario });
+
+            return View(Objeto_Obtenido);
+        }
+
+        // Recibe El Objeto Que Fue Enviado Anteriormente:
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Cambiar_Contraseña(Usuario usuario)
+        {
+            Usuario Objeto_Obtenido = await _UsuarioBL.Obtener_PorId(new Usuario() { Id_Usuario = usuario.Id_Usuario });
+
+            usuario.Contraseña = EncriptarMD5(usuario.Contraseña);
+
+            Objeto_Obtenido.Contraseña = usuario.Contraseña;
+
+            await _UsuarioBL.Edit(Objeto_Obtenido);
+
+            return RedirectToAction("Login", "Seguridad");
+        }
+
+
 
 
         // * * * * * * * * * OTROS METODOS * * * * * * * * * 
