@@ -10,7 +10,7 @@ namespace Acceso_Datos
         public static IServiceCollection AddDALDependecies(this IServiceCollection services, IConfiguration configuration)
         {
             // Inyeccion
-            services.AddDbContext<MyDBContext>(options => options.UseSqlServer(configuration.GetConnectionString("Cadena_Conexion")));
+            services.AddDbContext<MyDBContext>(options => options.UseSqlServer(configuration.GetConnectionString("Cadena_Conexion_2")));
 
             // Registrando Las Clases:
             services.AddScoped<UsuarioDAL>();
