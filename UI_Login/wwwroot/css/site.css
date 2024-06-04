@@ -21,6 +21,9 @@ body {
     background-color: #6d6d6d; /* Color de fondo personalizado para el cuerpo */
 }
 
-header {
-    background-color: #fff; /* Color de fondo para el encabezado */
+/* Estilos para el navbar */
+.navbar-custom {
+    background-color: #3e3b3b;
+    
 }
+
